@@ -5,7 +5,7 @@ export default interface HttpServer {
 
 import express from "express";
 import cors from "cors";
-import { autenticarJWT } from "../middleware /Token";
+import { autenticarJWT } from "../middleware/Token";
 
 export class HttpServerExpress implements HttpServer {
     readonly api: any;
