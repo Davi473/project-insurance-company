@@ -1,30 +1,66 @@
+import AgeLoad from "./AgeLoad";
+import Currency from "./Currency";
+import TravelTime from "./TravelTime";
+
 export default class Quotation {
-    private age: string[];
-    private currency_id: string;
-    private start_date: Date;
-    private end_date: Date;
+
+    private idUser: string;
+    private ages: string;
+    private currency_id: Currency;
+    private travelTime: TravelTime;
+    private start_date: string;
+    private end_date: string;
+    private quotation_id: number;
 
     constructor (
+        idUser: string,
         age: string,
         currency_id: string,
         start_date: string,
         end_date: string
     ) {
-        this.age = age.split(",");
-        this.currency_id = currency_id // Fazer uma classe
-        this.start_date = new Date(start_date);
-        this.end_date = new Date(end_date);
+        this.idUser = idUser;
+        this.ages = age;
+        this.currency_id = new Currency(currency_id);
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.travelTime = new TravelTime(this.start_date, this.end_date);
+        this.quotation_id = Date.now();
+    }
+    
+   
+    public getIdUser (): string {
+        return this.idUser;
     }
 
-    public getTotal (): number {
-
+    public getAge (): string {
+        return this.ages;
     }
 
     public getCurrencyId (): string {
+        return this.currency_id.getValue();
+    }
 
+    public getStartDate (): string {
+        return this.start_date;
+    }
+
+    public getEndDate (): string {
+        return this.end_date;
     }
 
     public getQuotationId (): number {
+        return this.quotation_id;
+    }
 
+    public getTotal (): number {
+        const fixedRate = 3;
+        const ages = this.ages.split(",");
+        const total = ages.reduce((total: number, age: string) => {
+            const ageLoad = new AgeLoad(Number(age));
+            const calcule = (fixedRate * ageLoad.getValue() * this.travelTime.getValue()).toFixed(2);
+            return total += Number(calcule);
+        }, 0);
+        return total;
     }
 }

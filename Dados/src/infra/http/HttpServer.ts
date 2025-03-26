@@ -19,7 +19,7 @@ export class HttpServerExpress implements HttpServer {
     public async register(method: string, url: string, callback: Function): Promise<void> {
         this.api[method](url, autenticarJWT,async (req: any, res: any) => {
             try {
-                const output = await callback(req.pamars, req.body);
+                const output = await callback(req.pamars, req.body, req.user);
                 if (output) res.json(output);
             } catch (e: any) {
                 res.status(422).json({ message: e.message });

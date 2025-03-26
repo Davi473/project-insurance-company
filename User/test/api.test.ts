@@ -3,7 +3,7 @@ import axios from "axios";
 const url = "http://localhost:3000";
 const user = {
     name: "Davi",
-    email: `${Math.random()}test@gmail.com`,
+    email: "test@gmail.com",
     password: "1234"
 };
 

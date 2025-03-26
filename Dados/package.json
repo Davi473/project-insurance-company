@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Davi473/project-insurance-company#readme",
   "dependencies": {
+    "@types/jsonwebtoken": "^9.0.9",
     "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
@@ -29,12 +30,12 @@
     "typescript": "^5.8.2"
   },
   "devDependencies": {
-    "ts-jest": "^29.3.0",
-    "@types/node": "^22.13.13",
+    "@types/axios": "^0.9.36",
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
     "@types/jest": "^29.5.14",
-    "@types/cors": "^2.8.17",
-    "@types/axios": "^0.9.36",
-    "@types/bcrypt": "^5.0.2"
+    "@types/node": "^22.13.13",
+    "ts-jest": "^29.3.0"
   }
 }
