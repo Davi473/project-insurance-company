@@ -1,10 +1,9 @@
-export default class Button {
-    readonly element: HTMLInputElement;
+export default function Button(name: string, callback: Function): [HTMLElement] {
+    const element = document.createElement("input");
+    element.className = "btn btn-primary";
+    element.type = "button";
+    element.value = name;
+    element.onclick = () => callback();
 
-    constructor (text: string) {
-        this.element = document.createElement("input");
-        this.element.className = "btn btn-primary";
-        this.element.type = "button";
-        this.element.value = text;
-    }
+    return [element];
 }

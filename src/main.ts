@@ -1,2 +1,2 @@
-import Login from "./ui/pages/login.js";
-new Login();
+import Login from "./ui/pages/login/index";
+Login();
