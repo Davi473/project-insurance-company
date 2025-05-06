@@ -9,7 +9,6 @@ export default function Register() {
     const app = document.querySelector("#app")
     if (!app) return;
     app.innerHTML = "";
-    app.className = "d-flex justify-content-center align-items-center flex-column min-vh-100"
     app.appendChild(NamePage("Register"));
     const [inputEmail, getValueInputEmail] = InputText("Email adress", "email");
     const [inputNickName, getValueInputNickName] = InputText("Nickname", "Nickname");

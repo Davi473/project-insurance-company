@@ -10,7 +10,6 @@ export default function Login() {
     const app = document.querySelector("#app")
     if (!app) return;
     app.innerHTML = "";
-    app.className = "d-flex justify-content-center align-items-center flex-column min-vh-100"
     app.appendChild(NamePage("Login"));
     const [inputEmail, getValueInputEmail] = InputText("Email adress", "email")
     const [inputPassword, getValueInputPassword] = InputText("Password", "password");

@@ -1,5 +1,5 @@
 export default interface HttpServer {
-    register (method: string, url: string, callback: Function): Promise<void>;
+    register (method: string, url: string, autenticar: boolean, callback: Function): Promise<void>;
     listen (port: string | number): Promise<void>;
 }
 
@@ -16,8 +16,8 @@ export class HttpServerExpress implements HttpServer {
         this.api.use(cors());
     }
 
-    public async register(method: string, url: string, callback: Function): Promise<void> {
-        this.api[method](url, autenticarJWT,async (req: any, res: any) => {
+    public async register(method: string, url: string, autenticar: boolean, callback: Function): Promise<void> {
+        this.api[method](url, autenticar ? autenticarJWT : null, async (req: any, res: any) => {
             try {
                 const output = await callback(req.pamars, req.body, req.user);
                 if (output) res.json(output);
