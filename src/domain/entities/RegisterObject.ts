@@ -1,6 +1,8 @@
-export default class Register {
+import Email from "../vo/Email";
+
+export default class RegisterObject {
     private name: string;
-    private email: string;
+    private email: Email;
     private password: string;
 
     constructor (
@@ -9,7 +11,7 @@ export default class Register {
         password: string
     ) {
         this.name = name;
-        this.email = email;
+        this.email = new Email(email);
         this.password = password;
     }
 
@@ -18,7 +20,7 @@ export default class Register {
     }
 
     public getEmail(): string {
-        return this.email;
+        return this.email.getValue();
     }
 
     public getPassword(): string {

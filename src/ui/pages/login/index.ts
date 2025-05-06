@@ -5,6 +5,7 @@ import NavigateTo from "../../components/NavigateTo/index";
 import RememberLater from "../../components/RememberLater/index";
 import Home from "../home/index";
 import Register from "../register/index";
+import LoginObject from "../../../domain/entities/LoginObject";
 
 export default function Login() { 
     const app = document.querySelector("#app")
@@ -15,13 +16,26 @@ export default function Login() {
     const [inputPassword, getValueInputPassword] = InputText("Password", "password");
     const rememberLater: RememberLater = new RememberLater();
 
-    function callback () {
+    async function callback () {
         const email = getValueInputEmail();
         const password = getValueInputPassword();
         if (email && password) {
             console.log(email, password);
-            Home();
-            return;
+            const user = new LoginObject(email, password);
+            try {
+                const response: any = await fetch("http://localhost:3001/login", {
+                    method: "PUT",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({email: user.getEmail(), password: user.getPassword()});
+                });
+                const responseJson = await response.json();
+                (globalThis as any).token = responseJson.token;
+                Home();
+            } catch (e: any) {
+                alert(`error: ${e.message}`);
+            }
         }
     }
 
