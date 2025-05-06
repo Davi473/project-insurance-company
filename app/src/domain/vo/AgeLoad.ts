@@ -20,7 +20,7 @@ export default class AgeLoad {
     }
 
     private findAgeLoad(): number {
-        const ageLoad = AGE_LOADS.find(({min, max}) => this.age > min && this.age < max);
+        const ageLoad = AGE_LOADS.find(({min, max}) => this.age >= min && this.age <= max);
         if (!ageLoad) throw new Error("This number is not on the list");
         return ageLoad.load;
     }

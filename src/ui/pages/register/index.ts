@@ -16,7 +16,7 @@ export default function Register() {
     const [inputPassword, getValueInputPassword] = InputText("Password", "password");
     const rememberLater: RememberLater = new RememberLater();
 
-    function callback () {
+    async function callback () {
         const email = getValueInputEmail();
         const name = getValueInputName();
         const password = getValueInputPassword();
@@ -24,12 +24,12 @@ export default function Register() {
         if (email && password && name) {
             const register = new RegisterObject(name, email, password);
             try {
-                const response: any = await fetch("http://localhost:3001/register", {
+                const response: any = await fetch("http://localhost:3004/register", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({name: register.getName(), email: register.getEmail(), password: register.getPassword()});
+                    body: JSON.stringify({name: register.getName(), email: register.getEmail(), password: register.getPassword()})
                 });
                 Login();
             } catch (e: any) {

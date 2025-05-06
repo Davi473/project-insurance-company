@@ -23,15 +23,16 @@ export default function Login() {
             console.log(email, password);
             const user = new LoginObject(email, password);
             try {
-                const response: any = await fetch("http://localhost:3001/login", {
+                const response: any = await fetch("http://localhost:3004/login", {
                     method: "PUT",
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({email: user.getEmail(), password: user.getPassword()});
+                    body: JSON.stringify({email: user.getEmail(), password: user.getPassword()})
                 });
                 const responseJson = await response.json();
-                (globalThis as any).token = responseJson.token;
+                if (responseJson.token === undefined) throw new Error("User Invalid");
+                localStorage.setItem("token", responseJson.token)
                 Home();
             } catch (e: any) {
                 alert(`error: ${e.message}`);
