@@ -6,7 +6,7 @@ export default class QuotationController {
         readonly httpServer: HttpServer,
         readonly calculeQuotation: CalculeQuotation
     ) {
-        this.httpServer.register("post", "/quotation", async (params: any, body: any, user: any) => {
+        this.httpServer.register("post", "/quotation", true, async (params: any, body: any, user: any) => {
             const input = {...body, ...user};     
             const output = await this.calculeQuotation.execute(input);
             return output;

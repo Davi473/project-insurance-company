@@ -1,4 +1,4 @@
-import Login from "../application/usecase/user/Login";
+import Login from "../../application/usecase/user/Login";
 import HttpServer from "../http/HttpServer";
 
 export default class LoginController {

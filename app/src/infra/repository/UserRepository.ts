@@ -8,7 +8,7 @@ export default interface UserRepository {
     delete (id: string): Promise<void>;
 }
 
-export class UserRepositoryMemmory implements UserRepository {
+export class UserRepositoryMemory implements UserRepository {
     private users: User[] = [];
     
     constructor() {}

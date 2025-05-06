@@ -1,9 +1,9 @@
-import Login from "../src/application/usecase/user/Login";
-import Register from "../src/application/usecase/user/Register";
-import { UserRepositoryMemmory } from "../src/infra/repository/UserRepository";
+import Login from "../../src/application/usecase/user/Login";
+import Register from "../../src/application/usecase/user/Register";
+import { UserRepositoryMemory } from "../../src/infra/repository/UserRepository";
 
 
-const repository = new UserRepositoryMemmory();
+const repository = new UserRepositoryMemory();
 const loginUseCase = new Login(repository);
 const registerUseCase = new Register(repository);
 
